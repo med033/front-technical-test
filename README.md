@@ -8,7 +8,7 @@ The goal of this technical test is to code a small file manager app. It will req
 
 ### Structure
 
-In this repository's main branch you are provided with a webpack-based boilerplate that allows you to quickly start developing your app in **TypeScript** and **Sass**. That being said, you are free to change anything you want.
+This repository’s main branch provides a ready to use Angular 19 boilerplate, pre-configured with **TypeScript** and **Sass**, allowing you to quickly start building scalable and maintainable web applications. The project structure is organized for easy development, and you are free to customize it to fit your needs.
 
 Although we are working with Angular at Ictechlab, there is _no limitation_ in the frameworks and libraries you can use for this test.
 
