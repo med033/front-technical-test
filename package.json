@@ -10,6 +10,7 @@
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test",
 		"lint": "ng lint",
+		"postinstall": "cd api && npm ci",
 		"format:check": "prettier --check \"src/**/*.{ts,html,scss,json}\"",
 		"format:write": "prettier --write \"src/**/*.{ts,html,scss,json}\"",
 		"start:all": "concurrently \"cd api && npm start\" \"ng dev\""
