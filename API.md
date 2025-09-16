@@ -28,7 +28,7 @@ http://localhost:3001/api
 {
 	"items": [
 		{
-			"id": "1",
+			"id": "1694512345676",
 			"parentId": null,
 			"name": "Documents",
 			"folder": true,
@@ -41,11 +41,11 @@ http://localhost:3001/api
 
 ---
 
-### 2. ➕ Create folder or upload file
+### 2. ➕ Create folder or multiple files
 
 **POST** `/api/items`
 
-#### Case 1: Create folder or empty file (JSON)
+#### Case 1: Create folder or multiple files (JSON)
 
 - **Body (application/json)**:
 
@@ -69,10 +69,11 @@ http://localhost:3001/api
 }
 ```
 
-#### Case 2: Upload a file (FormData)
+#### Case 2: Upload a multiple files (FormData)
 
 - **Body (multipart/form-data)**:
-  - Field `file` → binary file
+  - Field `files` → binary files
+  - Field `parentId` // optional
 
 - **Response (201)**:
 
@@ -84,7 +85,46 @@ http://localhost:3001/api
 	"folder": false,
 	"creation": "2025-09-13T09:39:22.304Z",
 	"modification": "2025-09-13T09:39:22.304Z",
-	"filePath": "uploads/abc123"
+	"filePath": "uploads/abc123",
+	"mimeType": "image/png",
+	"size": 9195
+}
+```
+
+- **Response (409)**: (Conflit)
+
+```
+{
+  "code": "DUPLICATE_FOLDER",
+  "desc": "A folder with this name already exists in this location"
+}
+
+```
+
+```
+{
+  "code": "DUPLICATE",
+  "desc": "A file with this name already exists in this location"
+}
+
+```
+
+- **Response (413)**: (Payload Too Large)
+
+```
+{
+  "code": "FILESIZE_LIMIT_EXCEEDED",
+  "desc": "File size exceeds the 10MB limit"
+}
+
+```
+
+- **Response (500)**:
+
+```
+{
+  "code": "SERVER_ERROR",
+  "desc": "Internal server error while processing request"
 }
 ```
 
@@ -192,7 +232,9 @@ curl -O http://localhost:3000/api/items/1694512345679
 	"folder": true,
 	"creation": "date-time",
 	"modification": "date-time",
-	"filePath": "string (optional, if file)"
+	"filePath": "string (optional, if files)",
+	"mimeType": "string (optional, if files",
+	"size": "number (optional, if file)"
 }
 ```
 

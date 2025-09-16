@@ -42,39 +42,107 @@ router.get('/items', (req, res) => {
 });
 
 // -----------------------------
-// POST /api/items (Create folder or file)
+// POST /api/items (Create folder or multiple files)
 // -----------------------------
-router.post('/items', upload.single('file'), (req, res) => {
+router.post('/items', upload.array('files', 10), (req, res) => {
 	try {
 		const { name, folder, parentId } = req.body;
 
-		if (req.file) {
-			const newItem = {
-				id: uuidv4(),
-				parentId: parentId || null,
-				name: req.file.originalname,
-				folder: false,
-				filePath: req.file.filename,
-				creation: new Date().toISOString(),
-				modification: new Date().toISOString(),
-			};
+		if (req.files && req.files.length > 0) {
+			const newItems = [];
+			const errors = [];
 
-			db.items.push(newItem);
-			buildItemsIndex();
-			saveDatabase();
-			return res.status(201).json(newItem);
+			req.files.forEach((file, index) => {
+				try {
+					const duplicate = db.items.find(
+						item =>
+							item.parentId === (parentId || null) &&
+							item.name === file.originalname &&
+							item.folder === false
+					);
+
+					if (duplicate) {
+						errors.push({
+							filename: file.originalname,
+							error: 'DUPLICATE',
+							message: 'A file with this name already exists in this location',
+						});
+						return;
+					}
+
+					const newItem = {
+						id: uuidv4(),
+						parentId: parentId || null,
+						name: file.originalname,
+						folder: false,
+						filePath: file.filename,
+						size: file.size,
+						mimeType: file.mimetype,
+						creation: new Date().toISOString(),
+						modification: new Date().toISOString(),
+					};
+
+					db.items.push(newItem);
+					newItems.push(newItem);
+				} catch (fileError) {
+					errors.push({
+						filename: file.originalname,
+						error: 'PROCESSING_ERROR',
+						message: 'Failed to process file',
+					});
+				}
+			});
+
+			if (newItems.length > 0) {
+				buildItemsIndex();
+				saveDatabase();
+			}
+
+			if (errors.length > 0 && newItems.length === 0) {
+				return res.status(400).json({
+					code: 'UPLOAD_FAILED',
+					desc: 'All files failed to upload',
+					errors: errors,
+				});
+			} else if (errors.length > 0) {
+				return res.status(207).json({
+					code: 'PARTIAL_SUCCESS',
+					message: 'Some files were uploaded successfully',
+					successful: newItems,
+					failed: errors,
+				});
+			} else {
+				return res.status(201).json({
+					items: newItems,
+				});
+			}
 		}
 
 		if (!name || folder === undefined) {
-			return res
-				.status(400)
-				.json({ code: 'INVALID', desc: 'Name and folder are required' });
+			return res.status(400).json({
+				code: 'INVALID_INPUT',
+				desc: 'Name and folder are required for folder creation',
+			});
+		}
+
+		const duplicateFolder = db.items.find(
+			item =>
+				item.parentId === (parentId || null) &&
+				item.name === name &&
+				item.folder === true
+		);
+
+		if (duplicateFolder) {
+			return res.status(409).json({
+				code: 'DUPLICATE_FOLDER',
+				desc: 'A folder with this name already exists in this location',
+			});
 		}
 
 		const newItem = {
 			id: uuidv4(),
 			parentId: parentId || null,
-			name,
+			name: name.trim(),
 			folder: folder === 'true' || folder === true,
 			creation: new Date().toISOString(),
 			modification: new Date().toISOString(),
@@ -83,12 +151,16 @@ router.post('/items', upload.single('file'), (req, res) => {
 		db.items.push(newItem);
 		buildItemsIndex();
 		saveDatabase();
-		res.status(201).json(newItem);
+
+		res.status(201).json({
+			item: newItem,
+		});
 	} catch (error) {
 		console.error('Error creating item:', error);
-		res
-			.status(500)
-			.json({ code: 'SERVER_ERROR', desc: 'Internal server error' });
+		res.status(500).json({
+			code: 'SERVER_ERROR',
+			desc: 'Internal server error while processing request',
+		});
 	}
 });
 
