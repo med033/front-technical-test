@@ -181,17 +181,6 @@ module.exports = {
       "modification": "2025-09-24T20:53:50.064Z"
     },
     {
-      "id": "b31348f9-4f84-4aa8-8cc4-ba4c09c77648",
-      "parentId": null,
-      "name": "Model.xlsx",
-      "folder": false,
-      "filePath": "4fd00054066566ded21d712c33c056a3",
-      "size": 5674,
-      "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      "creation": "2025-09-24T20:54:09.916Z",
-      "modification": "2025-09-24T20:54:09.916Z"
-    },
-    {
       "id": "30ca5ac9-a797-45ec-9202-9e074549cf6d",
       "parentId": "53857f8d-1ec5-4401-9f3f-044b50b57b21",
       "name": "refresh-cw (2).svg",
@@ -379,6 +368,17 @@ module.exports = {
       "mimeType": "image/png",
       "creation": "2025-09-25T13:10:35.946Z",
       "modification": "2025-09-25T13:11:33.030Z"
+    },
+    {
+      "id": "85246b4b-7082-4232-b593-3eb47b95d979",
+      "parentId": null,
+      "name": "toggleDownIcon.png",
+      "folder": false,
+      "filePath": "d6b4beffb934c011e316719c71f48926",
+      "size": 551,
+      "mimeType": "image/png",
+      "creation": "2025-09-25T13:25:31.295Z",
+      "modification": "2025-09-25T13:25:31.295Z"
     }
   ]
 };
