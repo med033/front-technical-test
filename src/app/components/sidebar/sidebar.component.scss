@@ -1,0 +1,161 @@
+$sidebar-width: 256px;
+$primary-color: #1a73e8;
+$hover-bg: #f1f3f4;
+$border-color: #dadce0;
+$text-primary: #202124;
+$text-secondary: #5f6368;
+$bg-primary: #f8fafd;
+
+.sidebar {
+	width: $sidebar-width;
+	min-width: $sidebar-width;
+	// border-right: 1px solid $border-color;
+	display: flex;
+	flex-direction: column;
+	padding: 12px;
+	background: #f8fafd;
+	height: 100%;
+
+	.logo {
+		margin-bottom: 16px;
+
+		.logo-container {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			cursor: pointer;
+			padding: 8px;
+			border-radius: 8px;
+			transition: background-color 0.2s ease;
+
+			&:hover {
+				background-color: $hover-bg;
+			}
+
+			&:focus {
+				outline: 2px solid $primary-color;
+				outline-offset: -2px;
+			}
+
+			.app-logo {
+				width: 60px;
+				// height: 36px;
+				flex-shrink: 0;
+				filter: drop-shadow(0 4px 6px rgba(59, 130, 246, 0.1));
+				transition: transform 0.3s ease;
+
+				&:hover {
+					transform: scale(1.05);
+				}
+			}
+
+			.logo-text {
+				display: block;
+				font-family: 'Product Sans', Arial, sans-serif;
+				font-size: 22px;
+				line-height: 48px;
+				overflow: hidden;
+				padding-left: 8px;
+				position: relative;
+				text-overflow: ellipsis;
+				top: -1.5px;
+				vertical-align: middle;
+			}
+		}
+	}
+
+	.main-actions {
+		padding: 8px;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		margin-bottom: 24px;
+	}
+
+	.action-button {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: 12px 24px;
+		border: none;
+		border-radius: 24px;
+		background: none;
+		cursor: pointer;
+		font-size: 14px;
+		color: $text-primary;
+		width: 100%;
+		text-align: left;
+		transition: background-color 0.2s;
+
+		&:hover {
+			background-color: $hover-bg;
+		}
+
+		&.primary {
+			background-color: #c2e7ff;
+			color: #001d35;
+
+			&:hover {
+				background-color: #b3d7f9;
+			}
+		}
+
+		i {
+			font-size: 20px;
+		}
+	}
+}
+
+.nav-items {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+
+	.nav-item {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: 12px 24px;
+		border: none;
+		border-radius: 0 16px 16px 0;
+		background: none;
+		cursor: pointer;
+		color: $text-primary;
+		font-size: 14px;
+		width: 100%;
+		text-align: left;
+		transition: background-color 0.2s;
+
+		&:hover {
+			background-color: $hover-bg;
+		}
+
+		&.active {
+			background-color: #e8f0fe;
+			color: $primary-color;
+		}
+
+		&.folder-item {
+			padding-left: 32px;
+			font-size: 13px;
+
+			i {
+				font-size: 18px;
+			}
+		}
+
+		i {
+			font-size: 20px;
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.sidebar {
+		width: 100%;
+		min-width: auto;
+		border-right: none;
+		border-bottom: 1px solid $border-color;
+		padding: 8px;
+	}
+}
