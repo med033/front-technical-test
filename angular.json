@@ -68,7 +68,7 @@
 							"buildTarget": "angular-technical-test:build:production"
 						},
 						"development": {
-							"hmr": false,
+							"hmr": true,
 							"buildTarget": "angular-technical-test:build:development"
 						}
 					},
