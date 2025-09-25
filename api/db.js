@@ -335,6 +335,50 @@ module.exports = {
       "mimeType": "image/jpeg",
       "creation": "2025-09-25T00:38:28.174Z",
       "modification": "2025-09-25T00:38:28.174Z"
+    },
+    {
+      "id": "2010604d-1542-4325-a324-064be1d3cf7f",
+      "parentId": "e6308151-1e44-445f-85dd-aaa9d9910742",
+      "name": "prize_0.png",
+      "folder": false,
+      "filePath": "0c81a1b338dfe15ed3670a0c6348ea72",
+      "size": 10273,
+      "mimeType": "image/png",
+      "creation": "2025-09-25T12:57:56.043Z",
+      "modification": "2025-09-25T12:57:56.043Z"
+    },
+    {
+      "id": "cc862c92-d697-40c3-8af7-3574665e4fa2",
+      "parentId": null,
+      "name": "prize_0.png",
+      "folder": false,
+      "filePath": "18a89d19f6a19fb48aecdfd6f7439875",
+      "size": 10273,
+      "mimeType": "image/png",
+      "creation": "2025-09-25T13:02:26.802Z",
+      "modification": "2025-09-25T13:02:26.802Z"
+    },
+    {
+      "id": "c1a16886-e94c-4189-a624-7576b53c96f4",
+      "parentId": "e6308151-1e44-445f-85dd-aaa9d9910742",
+      "name": "hangUpSupIcon.png",
+      "folder": false,
+      "filePath": "e28a08d50d732e7899865596dba4f959",
+      "size": 1784,
+      "mimeType": "image/png",
+      "creation": "2025-09-25T13:02:35.557Z",
+      "modification": "2025-09-25T13:02:35.557Z"
+    },
+    {
+      "id": "1998dc75-7a3c-401f-a529-db3585cccd8c",
+      "parentId": null,
+      "name": "abnormaly_sale.png",
+      "folder": false,
+      "filePath": "0e2df57d52723c0758e3b4c8d603b4f0",
+      "size": 12077,
+      "mimeType": "image/png",
+      "creation": "2025-09-25T13:03:36.786Z",
+      "modification": "2025-09-25T13:03:36.786Z"
     }
   ]
 };
