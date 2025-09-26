@@ -51,10 +51,6 @@ import { FileItem } from '../../models/file-item';
           </ng-container>
         </div>
 
-        <button class="nav-item">
-          <i class="material-icons">access_time</i>
-          <span>Recent</span>
-        </button>
       </nav>
     </aside>
   `,
