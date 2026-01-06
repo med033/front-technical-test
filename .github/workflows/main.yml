@@ -21,16 +21,16 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd front-technical-test/src
+          cd front-technical-test
           npm install
 
       - name: Build Angular
         run: |
-          cd front-technical-test/src
+          cd front-technical-test
           npm run build -- --configuration production --base-href=/${{ github.event.repository.name }}/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./front-technical-test/src/dist
+          publish_dir: ./front-technical-test/dist
